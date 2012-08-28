@@ -28,6 +28,26 @@ h2. Rails 2 Support
 
 This gem only works with Rails 3 (duh). If you want the same exactly behavior, but for Rails 2.x, go "here":http://github.com/jystewart/theme_support .
 
+h2. Rails 3 Asset Pipeline
+
+Follow the Split Theme Storage describe here: https://github.com/lucasefe/themes_for_rails/wiki/Assets-Pipeline-Integration
+
+On config/application.rb:
+<pre>
+ThemesForRails.available_themes.each do |theme_dir|
+  config.assets.paths << theme_dir
+end
+</pre>
+
+On config/production.rb:
+<pre>
+# Precompile asset themes
+config.assets.precompile += ['[theme]/stylesheets/theme.css']
+
+# Enable digest on Themes for Rails assets
+config.assets.digest_themes_for_rails = true
+</pre>
+
 h2. Running tests
 
 <pre>

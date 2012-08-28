@@ -47,6 +47,7 @@ require 'active_support/dependencies'
 require 'themes_for_rails/interpolation'
 require 'themes_for_rails/config'
 require 'themes_for_rails/common_methods'
+require 'themes_for_rails/digests'
 require 'themes_for_rails/url_helpers'
 
 require 'themes_for_rails/action_view'

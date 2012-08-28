@@ -7,30 +7,34 @@ module ThemesForRails
 
     included do
       include ThemesForRails::CommonMethods
+      include ThemesForRails::Digests
     end
 
     def current_theme_stylesheet_path(asset)
-      base_theme_stylesheet_path(:theme => self.theme_name, :asset => "#{asset}.css")
+      theme_stylesheet_path(asset)
     end
     
     def current_theme_javascript_path(asset)
-      base_theme_javascript_path(:theme => self.theme_name, :asset => "#{asset}.js")
+      theme_javascript_path(asset)
     end
 
     def current_theme_image_path(asset)
-      base_theme_image_path(:theme => self.theme_name, :asset => asset)
+      theme_image_path(asset)
     end
 
     def theme_stylesheet_path(asset, new_theme_name = self.theme_name)
-      base_theme_stylesheet_path(:theme => new_theme_name, :asset => "#{asset}.css")
+      asset_with_digest = digest_for_stylesheet_file("#{asset}.css", new_theme_name)
+      base_theme_stylesheet_path(:theme => new_theme_name, :asset => asset_with_digest)
     end
 
     def theme_javascript_path(asset, new_theme_name = self.theme_name)
-      base_theme_javascript_path(:theme => new_theme_name, :asset => "#{asset}.js")
+      asset_with_digest = digest_for_javascript_file("#{asset}.js", new_theme_name)
+      base_theme_javascript_path(:theme => new_theme_name, :asset => asset_with_digest)
     end
 
     def theme_image_path(asset, new_theme_name = self.theme_name)
-      base_theme_image_path(:theme => new_theme_name, :asset => asset)
+      asset_with_digest = digest_for_image_file(asset, new_theme_name)
+      base_theme_image_path(:theme => new_theme_name, :asset => asset_with_digest)
     end
     
     def theme_image_tag(source, options = {})
