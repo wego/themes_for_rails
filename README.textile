@@ -41,11 +41,8 @@ end
 
 On config/production.rb:
 <pre>
-# Precompile asset themes
-config.assets.precompile += ['[theme]/stylesheets/theme.css']
-
-# Enable digest on Themes for Rails assets
-config.assets.digest_themes_for_rails = true
+config.assets.precompile += ['[theme]/stylesheets/theme.css'] # Precompile asset themes
+config.assets.digest_themes_for_rails = true # Enable digest on Themes for Rails assets
 </pre>
 
 h2. Running tests
